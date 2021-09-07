@@ -7,6 +7,93 @@
     <title>Document</title>
 </head>
 <body>
-    
+<button id="coBtn">커피(700원)</button> <button id="okBtn">옥수수수염차(1000원)</button> <button id="waBtn">물(500원)</button>
+<hr>
+<button id="chBtn">1000원</button> <button id="ohBtn">500원</button> <button id="baBtn">100원</button>
+<hr>
+<span>현재금액 : </span> <span id="target"></span> <span>원</span>
 </body>
+<script>
+    let coBtn = document.getElementById('coBtn');
+    let okBtn = document.getElementById('okBtn');
+    let waBtn = document.getElementById('waBtn');
+    let chBtn = document.getElementById('chBtn');
+    let ohBtn = document.getElementById('ohBtn');
+    let baBtn = document.getElementById('baBtn');
+    
+    let target = document.getElementById('target');
+    let coin = 0;
+    chBtn.addEventListener('click',function(){
+        alert('1000원 충전');
+        coin += 1000;
+        target.innerText = coin;
+        colorChange();
+    })
+    ohBtn.addEventListener('click',function(){
+        alert('500원 충전');
+        coin += 500;
+        target.innerText = coin;
+        colorChange();
+    })
+    baBtn.addEventListener('click',function(){
+        alert('100원 충전');
+        coin += 100;
+        target.innerText = coin;
+        colorChange();
+    })
+
+    coBtn.addEventListener('click', function(){
+        if(coin< 700){
+            alert('구매 할수 없습니다.');
+        }else{
+            alert('커피구매');
+            coin -=700;
+            target.innerText = coin;
+            colorChange();
+        }
+    });
+    okBtn.addEventListener('click', function(){
+        if(coin < 1000){
+            alert('잔액 부족 구매할수 없습니다.')
+        }else{
+            alert('옥수수수염차 구매');
+            coin -=1000;
+            target.innerText = coin;
+            colorChange();
+        };
+    });
+    waBtn.addEventListener('click', function(){
+        if(coin < 500){
+            alert('잔액 부족 구매할 수 없습니다.');
+        }else{
+            alert('물 구매');
+            coin -=500;
+            target.innerText = coin;
+            colorChange();
+        }
+    });
+
+
+    colorChange = () => {
+        if(coin < 500){
+            coBtn.style.color = 'red';
+            okBtn.style.color = 'red';
+            waBtn.style.color = 'red';
+        }else if(coin >= 500 && coin< 700){
+            waBtn.style.color = 'blue'
+            coBtn.style.color = 'red';
+            okBtn.style.color = 'red';
+        }else if(coin>=700 && coin<1000){
+            waBtn.style.color = 'blue'
+            coBtn.style.color = 'blue';
+            okBtn.style.color = 'red';
+        }else if(coin>=1000){
+            waBtn.style.color = 'blue'
+            coBtn.style.color = 'blue';
+            okBtn.style.color = 'blue';
+        }
+    };
+    colorChange();
+    
+</script>
 </html>
