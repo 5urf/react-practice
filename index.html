@@ -7,107 +7,27 @@
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    function MinutesToHours() {
-      const [amount, setAmount] = React.useState(0);
-      const [inverted, setInverted] = React.useState(false);
-      const onChange = (e) => {
-        setAmount(e.target.value);
-      };
-      const reset = () => setAmount(0);
-      const oninvert = () => {
-        reset();
-        setInverted((current) => !current);
-      };
+    function Btn({ text, big }) {
       return (
-        <div>
-          <div>
-            <label htmlFor="Minutes">Minutes</label>
-            <input
-              value={inverted ? amount * 60 : amount}
-              id="Minutes"
-              placeholder="Minutes"
-              type="number"
-              onChange={onChange}
-              disabled={inverted}
-            />
-          </div>
-          <div>
-            <label htmlFor="Hours">Hours</label>
-            <input
-              value={inverted ? amount : Math.round(amount / 60)}
-              id="Hours"
-              placeholder="Hours"
-              type="number"
-              disabled={!inverted}
-              onChange={onChange}
-            />
-          </div>
-          <button onClick={reset}>Reset</button>
-          <button onClick={oninvert}>
-            {inverted ? "분을 시간으로" : "시간을 분으로"}
-          </button>
-        </div>
-      );
-    }
-    function MtoKm() {
-      const [kvalue, setKvalue] = React.useState(0);
-      const [invert, setInvert] = React.useState(false);
-      const resetK = () => setKvalue(0);
-      const onChangeKvalue = (e) => {
-        setKvalue(e.target.value);
-      };
-      const changeInvert = () => {
-        resetK();
-        setInvert((current) => !current);
-      };
-      return (
-        <div>
-          <div>
-            <label htmlFor="id">M</label>
-            <input
-              id="M"
-              type="number"
-              placeholder="M"
-              value={!invert ? kvalue : kvalue * 1000}
-              onChange={onChangeKvalue}
-              disabled={invert}
-            />
-          </div>
-          <div>
-            <label htmlFor="KM">KM</label>
-            <input
-              id="kM"
-              type="number"
-              placeholder="kM"
-              value={invert ? kvalue : Math.round(kvalue / 1000)}
-              onChange={onChangeKvalue}
-              disabled={!invert}
-            />
-          </div>
-          <button onClick={resetK}>초기화</button>
-          <button onClick={changeInvert}>
-            {!invert ? "킬로미터를 미터로" : "미터를 킬로미터로"}
-          </button>
-        </div>
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: "0",
+            borderRadius: 10,
+            fontSize: big ? 18 : 12,
+          }}
+        >
+          {text}
+        </button>
       );
     }
     function App() {
-      const [index, setIndex] = React.useState("1");
-      const onSelect = (e) => {
-        setIndex(e.target.value);
-      };
       return (
         <div>
-          <h1>Super Converter</h1>
-          <select value={index} onChange={onSelect}>
-            <option value="xx">select your units</option>
-            <option value="0">Minutes & Hours</option>
-            <option value="1">M & Km </option>
-          </select>
-          <hr />
-          {index === "xx" ? "Please select your units" : null}
-          {index === "0" ? <MinutesToHours /> : null}
-          {index === "1" ? <MtoKm /> : null}
+          <Btn text="Save Changes" big={true} />
+          <Btn text="Continue" bit={false} />
         </div>
       );
     }
