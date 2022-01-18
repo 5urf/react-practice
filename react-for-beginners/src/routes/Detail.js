@@ -22,7 +22,14 @@ function Detail() {
         <h1>Loading...</h1>
       ) : (
         <div>
-          <DetailMovie coverImg={movie.medium_cover_image} />
+          <DetailMovie
+            coverImg={movie.medium_cover_image}
+            title={movie.title}
+            genres={movie.genres}
+            rating={movie.rating}
+            runtime={movie.runtime}
+            description={movie.description_full}
+          />
         </div>
       )}
     </div>
